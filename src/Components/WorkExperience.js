@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import WorkExperienceForm from './WorkExperienceForm'
 
 class WorkExperience extends Component {
   constructor() {
@@ -37,7 +38,7 @@ class WorkExperience extends Component {
     return arr.map((job) => {
       const { key, companyName, position, timeWorked, desc } = job;
       return (
-        <div>
+        <div key={key} >
           <h1>{companyName}</h1>
           <h2>{position}</h2>
           <h2>{timeWorked}</h2>
@@ -54,6 +55,7 @@ class WorkExperience extends Component {
       <div>
         <h2>Work Experience</h2>
         {this.displayHistory(this.state.workHistory)}
+        <WorkExperienceForm />
       </div>
     );
   }
