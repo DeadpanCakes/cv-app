@@ -22,17 +22,28 @@ class WorkExperience extends Component {
       ],
     };
     this.displayHistory = this.displayHistory.bind(this);
+    this.removeFromHistory = this.removeFromHistory.bind(this);
+  }
+
+  removeFromHistory(key) {
+    //Making a new arr by filtering out designated anonymous object, effectively deleting it from the array
+    const updatedHistory = this.state.workHistory.filter((obj) => !(obj.key === key))
+    this.setState({
+      workHistory: updatedHistory,
+    });
   }
 
   displayHistory(arr) {
     return arr.map((job) => {
-      const { companyName, position, timeWorked, desc } = job;
+      const { key, companyName, position, timeWorked, desc } = job;
       return (
         <div>
           <h1>{companyName}</h1>
           <h2>{position}</h2>
           <h2>{timeWorked}</h2>
           <h2>{desc}</h2>
+          <button>Edit</button>
+          <button onClick={() => this.removeFromHistory(key)}>Delete</button>
         </div>
       );
     });
