@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
 class GenInfoForm extends Component {
-  constructor() {
+  constructor(props) {
+    const { firstName, lastName, phoneNumber, email} = props.info
     super();
     this.state = {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      email: email,
       isShowing: "form",
     };
     this.handleInput = this.handleInput.bind(this);

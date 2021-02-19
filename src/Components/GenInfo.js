@@ -3,13 +3,13 @@ import GenInfoForm from "./GenInfoForm";
 import InfoPreview from "./InfoPreview";
 
 class GeneralInfo extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      email: '',
       isDisplaying: "form" 
     };
     this.toggleDisplay = this.toggleDisplay.bind(this)
@@ -23,9 +23,9 @@ class GeneralInfo extends Component {
 
   delegateDisplay() {
     if (this.state.isDisplaying === 'form') {
-      return <GenInfoForm handleSubmit={this.handleSubmit} />
+      return <GenInfoForm info={this.state} handleSubmit={this.handleSubmit} />
     }
-    return <InfoPreview info={this.state} edit={this.toggleDisplay}/>
+    return <InfoPreview info={this.state} edit={this.toggleDisplay} />
   }
 
   handleSubmit(e) {
