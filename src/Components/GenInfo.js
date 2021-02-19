@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GenInfoForm from "./GenInfoForm";
+import InfoPreview from "./InfoPreview";
 
 class GeneralInfo extends Component {
   constructor() {
@@ -9,14 +10,26 @@ class GeneralInfo extends Component {
       lastName: "",
       phoneNumber: "",
       email: "",
+      isDisplaying: "form" 
     };
+    this.toggleDisplay = this.toggleDisplay.bind(this)
+    this.delegateDisplay = this.delegateDisplay.bind(this)
   }
+
+  toggleDisplay() {
+    this.state.isDisplaying === 'form' ? this.setState({isDisplaying: 'info'}) : this.setState({isDisplaying:'form'})
+  }
+
+  delegateDisplay() {
+    if (this.state.isDisplaying === 'form') {
+      return <GenInfoForm />
+    }
+    return <InfoPreview />
+  }
+
   render() {
     return (
-      <div>
-        <h1>General Information</h1>
-        <GenInfoForm />
-      </div>
+      this.delegateDisplay()
     );
   }
 }
