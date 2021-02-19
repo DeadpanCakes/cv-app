@@ -25,12 +25,12 @@ class GeneralInfo extends Component {
     if (this.state.isDisplaying === 'form') {
       return <GenInfoForm handleSubmit={this.handleSubmit} />
     }
-    return <InfoPreview info={this.state} />
+    return <InfoPreview info={this.state} edit={this.toggleDisplay}/>
   }
 
   handleSubmit(e) {
     this.setState(e)
-    console.log(this.state)
+    this.toggleDisplay()
   }
 
   render() {
