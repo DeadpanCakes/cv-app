@@ -12,8 +12,6 @@ class GenInfoForm extends Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleDisplay = this.toggleDisplay.bind(this);
-    this.delegateDisplay = this.delegateDisplay.bind(this);
   }
 
   handleInput(e) {
@@ -25,58 +23,41 @@ class GenInfoForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.toggleDisplay();
-  }
-
-  toggleDisplay() {
-      this.state.isShowing === "form" ? this.setState({isShowing:'display'}) : this.setState({isShowing:'form'})
-  }
-
-  delegateDisplay() {
-    const { firstName, lastName, phoneNumber, email } = this.state;
-    if (this.state.isShowing === "form") {
-      return (
-        <form onSubmit={this.handleSubmit}>
-          <input
-            name="firstName"
-            placeholder="First Name"
-            value={firstName}
-            onChange={this.handleInput}
-          ></input>
-          <input
-            name="lastName"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={this.handleInput}
-          ></input>
-          <input
-            name="phoneNumber"
-            placeholder="Phone Number"
-            value={phoneNumber}
-            onChange={this.handleInput}
-          ></input>
-          <input
-            name="email"
-            placeholder="Email"
-            value={email}
-            onChange={this.handleInput}
-          ></input>
-          <button>Submit</button>
-        </form>
-      );
-    }
-    return (
-      <div onClick={this.toggleDisplay}>
-        <h1>{firstName}</h1>
-        <h1>{lastName}</h1>
-        <h1>{phoneNumber}</h1>
-        <h1>{email}</h1>
-      </div>
-    );
+    //validate
+    this.props.handleSubmit(this.state)
   }
 
   render() {
-    return this.delegateDisplay();
+    const { firstName, lastName, phoneNumber, email } = this.state;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          name="firstName"
+          placeholder="First Name"
+          value={firstName}
+          onChange={this.handleInput}
+        ></input>
+        <input
+          name="lastName"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={this.handleInput}
+        ></input>
+        <input
+          name="phoneNumber"
+          placeholder="Phone Number"
+          value={phoneNumber}
+          onChange={this.handleInput}
+        ></input>
+        <input
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={this.handleInput}
+        ></input>
+        <button>Submit</button>
+      </form>
+    );
   }
 }
 
