@@ -1,4 +1,4 @@
-import GeneralInfo from './Components/GeneralInfoForm'
+import GeneralInfo from './Components/GenInfo'
 
 function App() {
   return (
