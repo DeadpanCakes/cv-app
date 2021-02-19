@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 
 class WorkExperienceForm extends Component {
-    constructor() {
+    constructor(props) {
         super()
+        const {companyName, position, timeWorked, desc} = props.data
         this.state = {
-            companyName: "",
-            position: "",
-            timeWorked: "",
-            desc: "",
+            companyName: companyName,
+            position: position,
+            timeWorked: timeWorked,
+            desc: desc,
         }
         this.handleInput = this.handleInput.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)

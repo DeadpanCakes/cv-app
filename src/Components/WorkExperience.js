@@ -55,7 +55,7 @@ class WorkExperience extends Component {
       <div>
         <h2>Work Experience</h2>
         {this.displayHistory(this.state.workHistory)}
-        <WorkExperienceForm />
+        <WorkExperienceForm data={{}} />
       </div>
     );
   }
