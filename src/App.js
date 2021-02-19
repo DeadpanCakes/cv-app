@@ -1,9 +1,9 @@
-import GeneralInfo from './Components/GenInfo'
+import PersonalInfo from './Components/PersonalInfo'
 
 function App() {
   return (
     <div className="App">
-        <GeneralInfo />
+        <PersonalInfo />
     </div>
   );
 }
