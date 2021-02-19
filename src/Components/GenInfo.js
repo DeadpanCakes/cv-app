@@ -14,6 +14,7 @@ class GeneralInfo extends Component {
     };
     this.toggleDisplay = this.toggleDisplay.bind(this)
     this.delegateDisplay = this.delegateDisplay.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   toggleDisplay() {
@@ -22,9 +23,14 @@ class GeneralInfo extends Component {
 
   delegateDisplay() {
     if (this.state.isDisplaying === 'form') {
-      return <GenInfoForm />
+      return <GenInfoForm handleSubmit={this.handleSubmit} />
     }
-    return <InfoPreview />
+    return <InfoPreview info={this.state} />
+  }
+
+  handleSubmit(e) {
+    this.setState(e)
+    console.log(this.state)
   }
 
   render() {
