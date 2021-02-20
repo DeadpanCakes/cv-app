@@ -15,9 +15,21 @@ class Education extends Component {
           institution: "School",
           duration: "2017-2019",
         },
+        {
+            key:2,
+            institution: "Place",
+            duration: "1930-1933"
+        }
       ],
     };
     this.displayHistory = this.displayHistory.bind(this)
+    this.removeTerm = this.removeTerm.bind(this)
+  }
+
+  removeTerm(key) {
+    const updatedHistory = this.state.educationHistory.filter(term => term.key !== key)
+    console.log(updatedHistory)
+    this.setState({educationHistory:updatedHistory})
   }
 
   displayHistory() {
@@ -26,6 +38,7 @@ class Education extends Component {
         <li key={term.key}>
           <h3>{term.institution}</h3>
           <p>{term.duration}</p>
+          <button onClick={() => this.removeTerm(term.key)}>Delete</button>
         </li>
       );
     });
