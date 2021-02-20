@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import EducationForm from "./EducationForm";
 
 class Education extends Component {
   constructor() {
@@ -55,6 +56,7 @@ class Education extends Component {
       <div>
         <h2>Education</h2>
         {this.displayHistory()}
+        <EducationForm info={this.state} />
         <button onClick={this.addTerm}>add</button>
       </div>
     );
