@@ -3,12 +3,14 @@ import React, {Component} from 'react';
 class WorkExperienceForm extends Component {
     constructor(props) {
         super()
-        const {companyName, position, timeWorked, desc} = props.data
+        const {key, companyName, position, timeWorked, desc} = props.data
         this.state = {
+            key: key,
             companyName: companyName,
             position: position,
             timeWorked: timeWorked,
             desc: desc,
+            isBeingEdited: false,
         }
         this.handleInput = this.handleInput.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,8 +25,9 @@ class WorkExperienceForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state)
-        return this.state
+        const updatedInfo = this.state
+        console.log('updated:', updatedInfo)
+        this.props.handleSubmit(updatedInfo)
     }
 
     render() {
