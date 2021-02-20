@@ -61,7 +61,7 @@ class WorkExperienceForm extends Component {
   render() {
     const { companyName, position, timeWorked, desc } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="workForm" onSubmit={this.handleSubmit} style={{display:'none'}}>
         <input
           name="companyName"
           value={companyName}

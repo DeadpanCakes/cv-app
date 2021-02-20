@@ -30,6 +30,7 @@ class WorkExperience extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.startEdit = this.startEdit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.toggleForm = this.toggleForm.bind(this)
   }
 
   removeFromHistory(key) {
@@ -112,6 +113,12 @@ class WorkExperience extends Component {
       );
     });
   }
+  
+  toggleForm() {
+    const form = document.getElementById("workForm")
+    console.log(form)
+    form.style.display !== 'none' ? form.style.display='none' : form.style.display='flex';
+  }
 
   render() {
     return (
@@ -119,6 +126,7 @@ class WorkExperience extends Component {
         <h2>Work Experience</h2>
         {this.displayHistory(this.state.workHistory)}
         <WorkExperienceForm nextKey={this.state.workHistory.length} data={{}} handleSubmit={this.handleSubmit} />
+        <button onClick={this.toggleForm} >Add/Hide</button>
       </div>
     );
   }
