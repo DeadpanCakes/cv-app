@@ -27,8 +27,9 @@ class WorkExperience extends Component {
     this.displayHistory = this.displayHistory.bind(this);
     this.removeFromHistory = this.removeFromHistory.bind(this);
     this.editJob = this.editJob.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.startEdit = this.startEdit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   removeFromHistory(key) {
@@ -42,13 +43,15 @@ class WorkExperience extends Component {
   }
 
   editJob(jobInfo) {
+    //Finds corresponding job and updates information
     const newState = this.state.workHistory.map((job) => {
       if (job.key === jobInfo.key) {
         return {
           key: jobInfo.key,
+          companyName: jobInfo.companyName,
           position: jobInfo.position,
           timeWorked: jobInfo.timeWorked,
-          desc: jobInfo.timeWorked,
+          desc: jobInfo.desc,
           isBeingEdited: false,
         };
       }
@@ -58,6 +61,7 @@ class WorkExperience extends Component {
   }
 
   startEdit(key) {
+    //Sets designated job in workhistory to have isBeingEdited=true, signaling that a form should be displayed instead
     const editTarget = this.state.workHistory.find((job) => job.key === key);
     const updatedHistory = this.state.workHistory.map((job) => {
       if (job.key === key) {
@@ -69,14 +73,19 @@ class WorkExperience extends Component {
       return job;
     });
     this.setState({workHistory: updatedHistory});
-    console.log(updatedHistory, this.state)
   }
 
-  handleSubmit(newJob) {
+  handleEdit(newJob) {
     const newHistory = this.editJob(newJob);
     this.setState({
       workHistory: newHistory,
     });
+  }
+
+  handleSubmit(newJob) {
+      const updatedHistory = this.state.workHistory.concat(newJob)
+      this.setState({workHistory: updatedHistory})
+      console.log(this.state)
   }
 
   displayHistory(arr) {
@@ -87,7 +96,7 @@ class WorkExperience extends Component {
           <WorkExperienceForm
             key={key}
             data={job}
-            handleSubmit={this.handleSubmit}
+            handleSubmit={this.handleEdit}
           />
         );
       }
@@ -109,7 +118,7 @@ class WorkExperience extends Component {
       <div>
         <h2>Work Experience</h2>
         {this.displayHistory(this.state.workHistory)}
-        <WorkExperienceForm data={{}} handleSubmit={this.handleSubmit} />
+        <WorkExperienceForm nextKey={this.state.workHistory.length} data={{}} handleSubmit={this.handleSubmit} />
       </div>
     );
   }
