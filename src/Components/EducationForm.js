@@ -9,6 +9,7 @@ class EducationForm extends Component {
       duration: "",
     };
     this.handleInput = this.handleInput.bind(this);
+    this.initState = this.initState.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -18,9 +19,21 @@ class EducationForm extends Component {
     console.log(this.state);
   }
 
+  initState() {
+    //increments key and clears state fields for next submission
+    this.setState(prevState => {
+        return {
+            key: prevState.key + 1,
+            institution: "",
+            duration: "",
+        }
+    })
+  }
+
   handleSubmit(e) {
       e.preventDefault()
       this.props.addTerm(this.state)
+      this.initState()
   }
 
   render() {
