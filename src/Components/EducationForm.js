@@ -9,6 +9,7 @@ class EducationForm extends Component {
       duration: "",
     };
     this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInput(e) {
@@ -17,9 +18,14 @@ class EducationForm extends Component {
     console.log(this.state);
   }
 
+  handleSubmit(e) {
+      e.preventDefault()
+      this.props.addTerm(this.state)
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input
           name="institution"
           value={this.state.institution}

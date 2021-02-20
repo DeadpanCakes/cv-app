@@ -56,7 +56,7 @@ class Education extends Component {
       <div>
         <h2>Education</h2>
         {this.displayHistory()}
-        <EducationForm info={this.state} />
+        <EducationForm info={this.state} addTerm={this.addTerm} />
         <button onClick={this.addTerm}>add</button>
       </div>
     );
