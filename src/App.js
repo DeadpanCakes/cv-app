@@ -1,3 +1,4 @@
+import Education from './Components/Education'
 import PersonalInfo from './Components/PersonalInfo'
 import WorkExperience from './Components/WorkExperience'
 
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
         <PersonalInfo />
         <WorkExperience />
+        <Education />
     </div>
   );
 }
