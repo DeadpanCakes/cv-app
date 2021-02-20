@@ -22,8 +22,14 @@ class Education extends Component {
         }
       ],
     };
+    this.addTerm = this.addTerm.bind(this)
     this.displayHistory = this.displayHistory.bind(this)
     this.removeTerm = this.removeTerm.bind(this)
+  }
+
+  addTerm(newTerm) {
+    const updatedHistory = this.state.educationHistory.concat(newTerm)
+    this.setState({educationHistory: updatedHistory})
   }
 
   removeTerm(key) {
@@ -49,6 +55,7 @@ class Education extends Component {
       <div>
         <h2>Education</h2>
         {this.displayHistory()}
+        <button onClick={this.addTerm}>add</button>
       </div>
     );
   }
