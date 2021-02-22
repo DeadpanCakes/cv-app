@@ -125,7 +125,7 @@ class WorkExperience extends Component {
       <div>
         <h2>Work Experience</h2>
         {this.displayHistory(this.state.workHistory)}
-        <WorkExperienceForm nextKey={this.state.workHistory.length} data={{}} handleSubmit={this.handleSubmit} />
+        <WorkExperienceForm id="workForm" nextKey={this.state.workHistory.length} data={{}} handleSubmit={this.handleSubmit} style={{display:'none'}} />
         <button onClick={this.toggleForm} >Add/Hide</button>
       </div>
     );
