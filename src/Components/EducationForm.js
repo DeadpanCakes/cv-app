@@ -54,7 +54,7 @@ class EducationForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} onClick={()=> console.log(this.state)}>
+      <form onSubmit={this.handleSubmit} id={this.props.id} style={this.props.style}>
         <input
           name="institution"
           value={this.state.institution}

@@ -31,6 +31,7 @@ class Education extends Component {
     this.removeTerm = this.removeTerm.bind(this);
     this.editTerm = this.editTerm.bind(this);
     this.submitTermEdit = this.submitTermEdit.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
   addTerm(newTerm) {
@@ -64,8 +65,6 @@ class Education extends Component {
   }
 
   submitTermEdit(editedTerm) {
-    //given a key, find associated object, access object's info, input info as value for form,
-    //upon submission of form, create new object, setState, with new object taking place of old one it arr
     const targetKey = editedTerm.key
     const updatedHistory = this.state.educationHistory.map(term => {
       if (term.key === targetKey) {
@@ -98,13 +97,18 @@ class Education extends Component {
     });
   }
 
+  toggleForm() {
+    const form = document.getElementById("educationForm")
+    form.style.display !== 'none' ? form.style.display='none' : form.style.display='flex';
+  }
+
   render() {
     return (
       <div>
         <h2>Education</h2>
         {this.displayHistory()}
-        <EducationForm info={this.state} handleSubmit={this.addTerm} />
-        <button onClick={this.addTerm}>add</button>
+        <EducationForm info={this.state} handleSubmit={this.addTerm} id="educationForm" style={{display: 'none'}}/>
+        <button onClick={this.toggleForm}>Add/Hide</button>
       </div>
     );
   }
