@@ -102,14 +102,14 @@ class WorkExperience extends Component {
         );
       }
       return (
-        <div key={key}>
-          <h1>{companyName}</h1>
-          <h2>{position}</h2>
-          <h2>{timeWorked}</h2>
-          <h2>{desc}</h2>
+        <li key={key}>
+          <h3>{companyName}</h3>
+          <p>{position}</p>
+          <p>{timeWorked}</p>
+          <p>{desc}</p>
           <button onClick={() => this.startEdit(key)}>Edit</button>
           <button onClick={() => this.removeFromHistory(key)}>Delete</button>
-        </div>
+        </li>
       );
     });
   }
@@ -124,7 +124,9 @@ class WorkExperience extends Component {
     return (
       <div>
         <h2>Work Experience</h2>
+        <ul>
         {this.displayHistory(this.state.workHistory)}
+        </ul>
         <WorkExperienceForm id="workForm" nextKey={this.state.workHistory.length} data={{}} handleSubmit={this.handleSubmit} style={{display:'none'}} />
         <button onClick={this.toggleForm} >Add/Hide</button>
       </div>

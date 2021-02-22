@@ -106,7 +106,9 @@ class Education extends Component {
     return (
       <div>
         <h2>Education</h2>
+        <ul>
         {this.displayHistory()}
+        </ul>
         <EducationForm info={this.state} handleSubmit={this.addTerm} id="educationForm" style={{display: 'none'}}/>
         <button onClick={this.toggleForm}>Add/Hide</button>
       </div>
