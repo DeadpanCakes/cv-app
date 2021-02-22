@@ -3,11 +3,20 @@ import React, { Component } from "react";
 class EducationForm extends Component {
   constructor(props) {
     super();
-    this.state = {
-      key: props.info.educationHistory.length,
-      institution: "",
-      duration: "",
-    };
+    if (!(props.info.key > -1)) {
+      this.state = {
+          key: props.info.educationHistory.length,
+          institution: "",
+          duration: "",
+        }
+      } else { 
+        console.log(props)
+        this.state = {
+          key: props.info.key,
+          institution: props.info.institution,
+          duration: props.info.duration,
+        };
+      }
     this.handleInput = this.handleInput.bind(this);
     this.initState = this.initState.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,24 +30,31 @@ class EducationForm extends Component {
 
   initState() {
     //increments key and clears state fields for next submission
-    this.setState(prevState => {
-        return {
-            key: prevState.key + 1,
-            institution: "",
-            duration: "",
-        }
-    })
+    this.setState((prevState) => {
+      return {
+        key: prevState.key + 1,
+        institution: "",
+        duration: "",
+      };
+    });
   }
 
   handleSubmit(e) {
-      e.preventDefault()
-      this.props.addTerm(this.state)
-      this.initState()
+    e.preventDefault();
+    const handler = this.props.handleSubmit
+    //this.props.addTerm(this.state);
+    const newTerm = {
+      ...this.state,
+      isBeingEdited: false
+    }
+    handler(newTerm)
+    this.initState();
+    console.log(newTerm)
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} onClick={()=> console.log(this.state)}>
         <input
           name="institution"
           value={this.state.institution}
