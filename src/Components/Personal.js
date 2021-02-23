@@ -46,7 +46,7 @@ class Personal extends Component {
 
   render() {
     return (
-      <div>
+      <div className="personalInfo">
         <h2>Personal Information</h2>
         {this.delegateDisplay()}
       </div>

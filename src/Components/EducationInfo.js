@@ -1,7 +1,7 @@
 const EducationInfo = (props) => {
   const { key, institution, duration } = props.term;
   return (
-    <li key={key}>
+    <li key={key} className="educationTerm">
       <h3>{institution}</h3>
       <p>{duration}</p>
       <button onClick={() => props.edit(key)}>Edit</button>

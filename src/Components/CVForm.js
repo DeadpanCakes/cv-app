@@ -13,7 +13,7 @@ class CVForm extends Component {
     const { personalData, workData, educationData } = this.props.data
     const { updatePersonal, updateWork, updateEducation } = this.props
     return (
-      <div>
+      <div className="formContainer">
         <Personal personalData={personalData} updatePersonal={updatePersonal} />
         <WorkExperience workData={workData} updateWork={updateWork} />
         <Education educationData={educationData} updateEducation={updateEducation} />

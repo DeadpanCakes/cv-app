@@ -28,7 +28,7 @@ class Education extends Component {
       (term) => term.key !== key
     );
     await this.setState({ educationHistory: updatedHistory });
-    this.props.updateEducation(this.state.educationHistory)
+    this.props.updateEducation(this.state.educationHistory);
   }
 
   async editTerm(key) {
@@ -47,7 +47,7 @@ class Education extends Component {
     await this.setState({
       educationHistory: updatedHistory,
     });
-    this.props.updateEducation(this.state.educationHistory)
+    this.props.updateEducation(this.state.educationHistory);
   }
 
   async submitTermEdit(editedTerm) {
@@ -62,7 +62,7 @@ class Education extends Component {
     await this.setState({
       educationHistory: updatedHistory,
     });
-    this.props.updateEducation(this.state.educationHistory)
+    this.props.updateEducation(this.state.educationHistory);
   }
 
   displayHistory() {
@@ -86,22 +86,30 @@ class Education extends Component {
 
   toggleForm() {
     this.state.newFormShowing
-      ? this.setState({newFormShowing: false})
-      : this.setState({newFormShowing: true})
+      ? this.setState({ newFormShowing: false })
+      : this.setState({ newFormShowing: true });
   }
 
   render() {
     return (
-      <div>
-        <h2>Education</h2>
-        <ul>{this.displayHistory()}</ul>
+      <div className="educationHistory">
+        <div className="sectionHeader">
+          <h2>Education</h2>
+          <button className="addBtn" onClick={this.toggleForm}>
+            {this.state.newFormShowing ? "X" : "+"}
+          </button>
+        </div>
+        <ul className="educationList">{this.displayHistory()}</ul>
         <EducationForm
           info={this.state}
           handleSubmit={this.addTerm}
           id="educationForm"
-          style={this.state.newFormShowing? { display: "flex" } : {display : "none"}}
+          style={
+            this.state.newFormShowing
+              ? { display: "flex" }
+              : { display: "none" }
+          }
         />
-        <button onClick={this.toggleForm}>{this.state.newFormShowing? "X" : "+"}</button>
       </div>
     );
   }

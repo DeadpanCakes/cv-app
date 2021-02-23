@@ -2,7 +2,7 @@ const WorkExperienceInfo = (props) => {
   const { key, companyName, position, timeWorked, desc } = props.job;
   return (
     <div>
-      <li key={key}>
+      <li key={key} className="prevJob">
         <h3>{companyName}</h3>
         <p>{position}</p>
         <p>{timeWorked}</p>

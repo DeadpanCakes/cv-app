@@ -107,9 +107,16 @@ class WorkExperience extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Work Experience</h2>
-        <ul>{this.displayHistory(this.state.workHistory)}</ul>
+      <div className="workExperience">
+        <div className="sectionHeader">
+          <h2>Work Experience</h2>
+          <button className="addBtn" onClick={this.toggleForm}>
+            {this.state.newFormShowing ? "X" : "+"}
+          </button>
+        </div>
+        <ul className="jobList">
+          {this.displayHistory(this.state.workHistory)}
+        </ul>
         <WorkExperienceForm
           nextKey={this.state.workHistory.length}
           data={{}}
@@ -120,9 +127,6 @@ class WorkExperience extends Component {
               : { display: "none" }
           }
         />
-        <button onClick={this.toggleForm}>
-          {this.state.newFormShowing ? "X" : "+"}
-        </button>
       </div>
     );
   }
