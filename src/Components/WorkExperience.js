@@ -1,20 +1,21 @@
 import React, { Component } from "react";
 import WorkExperienceForm from "./WorkExperienceForm";
-import WorkExperienceInfo from './WorkExperienceInfo';
+import WorkExperienceInfo from "./WorkExperienceInfo";
 
 class WorkExperience extends Component {
   constructor(props) {
     super();
     this.state = {
       workHistory: [],
+      newFormShowing: false,
     };
     this.displayHistory = this.displayHistory.bind(this);
     this.removeFromHistory = this.removeFromHistory.bind(this);
     this.editJob = this.editJob.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.startEdit = this.startEdit.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.toggleForm = this.toggleForm.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
   async removeFromHistory(key) {
@@ -25,7 +26,7 @@ class WorkExperience extends Component {
     await this.setState({
       workHistory: updatedHistory,
     });
-    this.props.updateWork(this.state.workHistory)
+    this.props.updateWork(this.state.workHistory);
   }
 
   editJob(jobInfo) {
@@ -58,7 +59,7 @@ class WorkExperience extends Component {
       }
       return job;
     });
-    this.setState({workHistory: updatedHistory});
+    this.setState({ workHistory: updatedHistory });
   }
 
   async handleEdit(newJob) {
@@ -66,13 +67,13 @@ class WorkExperience extends Component {
     await this.setState({
       workHistory: newHistory,
     });
-    this.props.updateWork(this.state.workHistory)
+    this.props.updateWork(this.state.workHistory);
   }
 
   async handleSubmit(newJob) {
-      const updatedHistory = this.state.workHistory.concat(newJob)
-      await this.setState({workHistory: updatedHistory})
-      this.props.updateWork(this.state.workHistory)
+    const updatedHistory = this.state.workHistory.concat(newJob);
+    await this.setState({ workHistory: updatedHistory });
+    this.props.updateWork(this.state.workHistory);
   }
 
   displayHistory(arr) {
@@ -88,25 +89,40 @@ class WorkExperience extends Component {
         );
       }
       return (
-        <WorkExperienceInfo key={key} job={job} edit={this.startEdit} remove={this.removeFromHistory}/>
+        <WorkExperienceInfo
+          key={key}
+          job={job}
+          edit={this.startEdit}
+          remove={this.removeFromHistory}
+        />
       );
     });
   }
-  
+
   toggleForm() {
-    const form = document.getElementById("workForm")
-    form.style.display !== 'none' ? form.style.display='none' : form.style.display='flex';
+    this.state.newFormShowing
+      ? this.setState({ newFormShowing: false })
+      : this.setState({ newFormShowing: true });
   }
 
   render() {
     return (
       <div>
         <h2>Work Experience</h2>
-        <ul>
-        {this.displayHistory(this.state.workHistory)}
-        </ul>
-        <WorkExperienceForm id="workForm" nextKey={this.state.workHistory.length} data={{}} handleSubmit={this.handleSubmit} style={{display:'none'}} />
-        <button onClick={this.toggleForm} >Add/Hide</button>
+        <ul>{this.displayHistory(this.state.workHistory)}</ul>
+        <WorkExperienceForm
+          nextKey={this.state.workHistory.length}
+          data={{}}
+          handleSubmit={this.handleSubmit}
+          style={
+            this.state.newFormShowing
+              ? { display: "flex" }
+              : { display: "none" }
+          }
+        />
+        <button onClick={this.toggleForm}>
+          {this.state.newFormShowing ? "X" : "+"}
+        </button>
       </div>
     );
   }
