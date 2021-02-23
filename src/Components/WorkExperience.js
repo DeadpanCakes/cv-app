@@ -3,7 +3,7 @@ import WorkExperienceForm from "./WorkExperienceForm";
 import WorkExperienceInfo from './WorkExperienceInfo';
 
 class WorkExperience extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       workHistory: [
@@ -82,9 +82,10 @@ class WorkExperience extends Component {
     });
   }
 
-  handleSubmit(newJob) {
+  async handleSubmit(newJob) {
       const updatedHistory = this.state.workHistory.concat(newJob)
-      this.setState({workHistory: updatedHistory})
+      await this.setState({workHistory: updatedHistory})
+      this.props.updateWork(this.state.workHistory)
   }
 
   displayHistory(arr) {

@@ -3,7 +3,7 @@ import EducationForm from "./EducationForm";
 import EducationInfo from "./EducationInfo";
 
 class Education extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       educationHistory: [],
@@ -16,9 +16,10 @@ class Education extends Component {
     this.toggleForm = this.toggleForm.bind(this);
   }
 
-  addTerm(newTerm) {
+  async addTerm(newTerm) {
     const updatedHistory = this.state.educationHistory.concat(newTerm);
-    this.setState({ educationHistory: updatedHistory });
+    await this.setState({ educationHistory: updatedHistory });
+    this.props.updateEducation(this.state.educationHistory);
   }
 
   removeTerm(key) {
