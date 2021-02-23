@@ -7,6 +7,7 @@ class Education extends Component {
     super();
     this.state = {
       educationHistory: [],
+      newFormShowing: false,
     };
     this.addTerm = this.addTerm.bind(this);
     this.displayHistory = this.displayHistory.bind(this);
@@ -84,10 +85,9 @@ class Education extends Component {
   }
 
   toggleForm() {
-    const form = document.getElementById("educationForm");
-    form.style.display !== "none"
-      ? (form.style.display = "none")
-      : (form.style.display = "flex");
+    this.state.newFormShowing
+      ? this.setState({newFormShowing: false})
+      : this.setState({newFormShowing: true})
   }
 
   render() {
@@ -99,9 +99,9 @@ class Education extends Component {
           info={this.state}
           handleSubmit={this.addTerm}
           id="educationForm"
-          style={{ display: "none" }}
+          style={this.state.newFormShowing? { display: "flex" } : {display : "none"}}
         />
-        <button onClick={this.toggleForm}>Add/Hide</button>
+        <button onClick={this.toggleForm}>{this.state.newFormShowing? "X" : "+"}</button>
       </div>
     );
   }
