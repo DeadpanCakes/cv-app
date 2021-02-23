@@ -6,13 +6,39 @@ class App extends Component {
     super();
     this.state = {
       personalData: {
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        email: "",
+        firstName: "Anthony",
+        lastName: "Mendoza",
+        phoneNumber: "+1 (234) 567-8910",
+        email: "abc123@gmail.com",
       },
-      workData: [],
-      educationData: [],
+      workData: [
+        {
+          key: 0,
+          companyName: "Office",
+          position: "Job Doer",
+          timeWorked: "Too Long",
+          desc: "Did Stuff",
+        },
+        {
+          key: 1,
+          companyName: "Restaurant",
+          position: "Chef",
+          timeWorked: "Too Long",
+          desc: "Cooked Stuff",
+        }
+      ],
+      educationData: [
+        {
+          key: 0,
+          institution: "Place",
+          duration: "Time"
+        },
+        {
+          key: 1,
+          institution: "School",
+          duration: "Some Time"
+        }
+      ],
       isCompleted: false,
     };
     this.toggleCompletion = this.toggleCompletion.bind(this);
