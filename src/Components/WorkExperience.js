@@ -17,14 +17,15 @@ class WorkExperience extends Component {
     this.toggleForm = this.toggleForm.bind(this)
   }
 
-  removeFromHistory(key) {
+  async removeFromHistory(key) {
     //Making a new arr by filtering out designated anonymous object, effectively deleting it from the array
     const updatedHistory = this.state.workHistory.filter(
       (obj) => !(obj.key === key)
     );
-    this.setState({
+    await this.setState({
       workHistory: updatedHistory,
     });
+    this.props.updateWork(this.state.workHistory)
   }
 
   editJob(jobInfo) {
@@ -60,11 +61,12 @@ class WorkExperience extends Component {
     this.setState({workHistory: updatedHistory});
   }
 
-  handleEdit(newJob) {
+  async handleEdit(newJob) {
     const newHistory = this.editJob(newJob);
-    this.setState({
+    await this.setState({
       workHistory: newHistory,
     });
+    this.props.updateWork(this.state.workHistory)
   }
 
   async handleSubmit(newJob) {

@@ -22,14 +22,15 @@ class Education extends Component {
     this.props.updateEducation(this.state.educationHistory);
   }
 
-  removeTerm(key) {
+  async removeTerm(key) {
     const updatedHistory = this.state.educationHistory.filter(
       (term) => term.key !== key
     );
-    this.setState({ educationHistory: updatedHistory });
+    await this.setState({ educationHistory: updatedHistory });
+    this.props.updateEducation(this.state.educationHistory)
   }
 
-  editTerm(key) {
+  async editTerm(key) {
     const targetTerm = this.state.educationHistory.find(
       (item) => item.key === key
     );
@@ -42,12 +43,13 @@ class Education extends Component {
       }
       return term;
     });
-    this.setState({
+    await this.setState({
       educationHistory: updatedHistory,
     });
+    this.props.updateEducation(this.state.educationHistory)
   }
 
-  submitTermEdit(editedTerm) {
+  async submitTermEdit(editedTerm) {
     const targetKey = editedTerm.key;
     const updatedHistory = this.state.educationHistory.map((term) => {
       if (term.key === targetKey) {
@@ -56,9 +58,10 @@ class Education extends Component {
         return term;
       }
     });
-    this.setState({
+    await this.setState({
       educationHistory: updatedHistory,
     });
+    this.props.updateEducation(this.state.educationHistory)
   }
 
   displayHistory() {
