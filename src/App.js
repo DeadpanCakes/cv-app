@@ -85,7 +85,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" onClick={() => console.log(this.state)}>
+      <div className="App">
         {this.state.isCompleted ? (
           this.formatCv()
         ) : (

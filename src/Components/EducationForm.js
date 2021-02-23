@@ -10,7 +10,6 @@ class EducationForm extends Component {
           duration: "",
         }
       } else { 
-        console.log(props)
         this.state = {
           key: props.info.key,
           institution: props.info.institution,
@@ -25,7 +24,6 @@ class EducationForm extends Component {
   handleInput(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   initState() {
@@ -49,7 +47,6 @@ class EducationForm extends Component {
     }
     handler(newTerm)
     this.initState();
-    console.log(newTerm)
   }
 
   render() {

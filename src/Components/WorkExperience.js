@@ -6,22 +6,7 @@ class WorkExperience extends Component {
   constructor(props) {
     super();
     this.state = {
-      workHistory: [
-        {
-          key: 0,
-          companyName: "hru",
-          position: 'uerhl,',
-          timeWorked: 'uhera',
-          desc: 'uhra',
-        },
-        {
-          key: 1,
-          companyName: '39128h',
-          position: 'uerhuel,',
-          timeWorked: 'uheaura',
-          desc: 'uhauera',
-        }
-      ],
+      workHistory: [],
     };
     this.displayHistory = this.displayHistory.bind(this);
     this.removeFromHistory = this.removeFromHistory.bind(this);
