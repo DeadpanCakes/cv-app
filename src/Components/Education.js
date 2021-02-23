@@ -96,7 +96,7 @@ class Education extends Component {
         <div className="sectionHeader">
           <h2>Education</h2>
           <button className="addBtn" onClick={this.toggleForm}>
-            {this.state.newFormShowing ? "X" : "+"}
+            {this.state.newFormShowing ? "Hide Form" : "Add Section"}
           </button>
         </div>
         <ul className="educationList">{this.displayHistory()}</ul>

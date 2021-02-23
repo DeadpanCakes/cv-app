@@ -138,15 +138,20 @@ h1 {
 }
 
 h2 {
-  font-size: 2.3em;
+  font-size: 2.4em;
 }
 
 h3 {
-  font-size: 2em;
+  font-size: 1.9em;
 }
 
 p {
   font-size: 1.5em;
+}
+
+form {
+        display: flex;
+        align-items: flex-start;
 }
 
 .personalInfo,
@@ -168,4 +173,8 @@ p {
 
 .addBtn {
         margin-left: 10px;
+}
+
+.jobDesc {
+        height: 60px;
 }

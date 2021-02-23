@@ -80,13 +80,13 @@ class WorkExperienceForm extends Component {
           onChange={this.handleInput}
           placeholder="Time Worked"
         ></input>
-        <input
+        <textarea
+          className="jobDesc"
           name="desc"
-          type="textarea"
           value={desc}
           onChange={this.handleInput}
           placeholder="Briefly Describe Your Responsibilites During Your Time Working This Job"
-        ></input>
+        ></textarea>
         <button>Submit</button>
       </form>
     );

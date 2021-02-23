@@ -111,7 +111,7 @@ class WorkExperience extends Component {
         <div className="sectionHeader">
           <h2>Work Experience</h2>
           <button className="addBtn" onClick={this.toggleForm}>
-            {this.state.newFormShowing ? "X" : "+"}
+            {this.state.newFormShowing ? "Hide Form" : "Add Section"}
           </button>
         </div>
         <ul className="jobList">
