@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import WorkExperienceForm from "./WorkExperienceForm";
+import WorkExperienceInfo from './WorkExperienceInfo';
 
 class WorkExperience extends Component {
   constructor() {
@@ -8,20 +9,18 @@ class WorkExperience extends Component {
       workHistory: [
         {
           key: 0,
-          companyName: "Champs",
-          position: "Sales",
-          timeWorked: "2019-2020",
-          desc: "Sold things",
-          isBeingEdited: false,
+          companyName: "hru",
+          position: 'uerhl,',
+          timeWorked: 'uhera',
+          desc: 'uhra',
         },
         {
           key: 1,
-          companyName: "McDonald's",
-          position: "Sanitary Worker",
-          timeWorked: "2018-2019",
-          desc: "Cleaned things",
-          isBeingEdited: false,
-        },
+          companyName: '39128h',
+          position: 'uerhuel,',
+          timeWorked: 'uheaura',
+          desc: 'uhauera',
+        }
       ],
     };
     this.displayHistory = this.displayHistory.bind(this);
@@ -86,12 +85,11 @@ class WorkExperience extends Component {
   handleSubmit(newJob) {
       const updatedHistory = this.state.workHistory.concat(newJob)
       this.setState({workHistory: updatedHistory})
-      console.log(this.state)
   }
 
   displayHistory(arr) {
     return arr.map((job) => {
-      const { key, companyName, position, timeWorked, desc } = job;
+      const { key } = job;
       if (job.isBeingEdited) {
         return (
           <WorkExperienceForm
@@ -102,21 +100,13 @@ class WorkExperience extends Component {
         );
       }
       return (
-        <li key={key}>
-          <h3>{companyName}</h3>
-          <p>{position}</p>
-          <p>{timeWorked}</p>
-          <p>{desc}</p>
-          <button onClick={() => this.startEdit(key)}>Edit</button>
-          <button onClick={() => this.removeFromHistory(key)}>Delete</button>
-        </li>
+        <WorkExperienceInfo key={key} workHistory={job} edit={this.startEdit} remove={this.removeFromHistory}/>
       );
     });
   }
   
   toggleForm() {
     const form = document.getElementById("workForm")
-    console.log(form)
     form.style.display !== 'none' ? form.style.display='none' : form.style.display='flex';
   }
 
