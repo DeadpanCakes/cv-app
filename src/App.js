@@ -81,31 +81,37 @@ class App extends Component {
           <h1 className="sectionHeader">
             {firstName} {lastName}
           </h1>
-          <h3>{phoneNumber}</h3>
-          <h3>{email}</h3>
+          <div className="infoContainer">
+            <h3>{phoneNumber}</h3>
+            <h3>{email}</h3>
+          </div>
         </div>
         <div className="workExperience">
-          <h1 className="sectionHeader">Work Experience</h1>
+          <h2 className="sectionHeader">Work Experience</h2>
           <ul>
             {workData.map((job) => {
               return (
-                <li className='prevJob' key={job.key}>
+                <li className="prevJob" key={job.key}>
                   <h3>{job.companyName}</h3>
-                  <p>{job.position}</p>
-                  <p>{job.timeWorked}</p>
+                  <div className="infoContainer">
+                    <p>{job.position}</p>
+                    <p>{job.timeWorked}</p>
+                  </div>
                 </li>
               );
             })}
           </ul>
         </div>
         <div className="educationHistory">
-          <h1 className="sectionHeader">Education History</h1>
+          <h2 className="sectionHeader">Education History</h2>
           <ul>
             {educationData.map((term) => {
               return (
-                <li className='educationTerm' key={term.key}>
+                <li className="educationTerm" key={term.key}>
                   <h3>{term.institution}</h3>
-                  <p>{term.duration}</p>
+                  <div className="infoContainer">
+                    <p>{term.duration}</p>
+                  </div>
                 </li>
               );
             })}

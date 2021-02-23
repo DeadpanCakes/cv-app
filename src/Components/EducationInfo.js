@@ -3,7 +3,9 @@ const EducationInfo = (props) => {
   return (
     <li key={key} className="educationTerm">
       <h3>{institution}</h3>
-      <p>{duration}</p>
+      <div className="infoContainer">
+        <p>{duration}</p>
+      </div>
       <button onClick={() => props.edit(key)}>Edit</button>
       <button onClick={() => props.remove(key)}>Delete</button>
     </li>

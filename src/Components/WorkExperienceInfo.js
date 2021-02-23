@@ -4,9 +4,11 @@ const WorkExperienceInfo = (props) => {
     <div>
       <li key={key} className="prevJob">
         <h3>{companyName}</h3>
-        <p>{position}</p>
-        <p>{timeWorked}</p>
-        <p>{desc}</p>
+        <div className="infoContainer">
+          <p>{position}</p>
+          <p>{timeWorked}</p>
+          <p>{desc}</p>
+        </div>
         <button onClick={() => props.edit(key)}>Edit</button>
         <button onClick={() => props.remove(key)}>Delete</button>
       </li>
