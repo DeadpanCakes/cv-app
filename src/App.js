@@ -9,54 +9,93 @@ class App extends Component {
         firstName: "",
         lastName: "",
         phoneNumber: "",
-        email: '',
+        email: "",
       },
       workData: [],
       educationData: [],
-      isCompleted: false
+      isCompleted: false,
     };
-    this.toggleCompletion = this.toggleCompletion.bind(this)
-    this.updatePersonal = this.updatePersonal.bind(this)
-    this.updateWork = this.updateWork.bind(this)
-    this.updateEducation = this.updateEducation.bind(this)
+    this.toggleCompletion = this.toggleCompletion.bind(this);
+    this.updatePersonal = this.updatePersonal.bind(this);
+    this.updateWork = this.updateWork.bind(this);
+    this.updateEducation = this.updateEducation.bind(this);
+    this.formatCv = this.formatCv.bind(this);
   }
 
   toggleCompletion() {
-    this.setState(prevState=> ({
-      isCompleted: !prevState.isCompleted
-    }))
+    this.setState((prevState) => ({
+      isCompleted: !prevState.isCompleted,
+    }));
   }
 
   updatePersonal(newData) {
     this.setState({
-      personalData: newData
-    })
+      personalData: newData,
+    });
   }
 
   updateWork(newData) {
     this.setState({
-      workData: newData
-    })
-  }  
-  
+      workData: newData,
+    });
+  }
+
   updateEducation(newData) {
     this.setState({
-      educationData: newData
-    })
+      educationData: newData,
+    });
   }
-  formatCv() {
 
+  formatCv() {
+    const { firstName, lastName, phoneNumber, email } = this.state.personalData;
+    const { workData, educationData } = this.state;
+    return (
+      <main>
+        <h1>
+          {firstName} {lastName}
+        </h1>
+        <h3>{phoneNumber}</h3>
+        <h3>{email}</h3>
+        <h1>Work Experience</h1>
+        <ul>
+          {workData.map((job) => {
+            return (
+              <li key={job.key}>
+                <h3>{job.companyName}</h3>
+                <p>{job.position}</p>
+                <p>{job.timeWorked}</p>
+              </li>
+            );
+          })}
+        </ul>
+        <h1>Education History</h1>
+        <ul>
+          {educationData.map((term) => {
+            return (
+              <li key={term.key}>
+                <h3>{term.institution}</h3>
+                <p>{term.duration}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </main>
+    );
   }
 
   render() {
     return (
-      <div className="App">
-        <CVForm
-          updatePersonal={this.updatePersonal}
-          updateWork={this.updateWork}
-          updateEducation={this.updateEducation}
-        />
-        <button onClick={()=> console.log(this.state)}>Submit</button>
+      <div className="App" onClick={() => console.log(this.state)}>
+        {this.state.isCompleted ? (
+          this.formatCv()
+        ) : (
+          <CVForm
+            updatePersonal={this.updatePersonal}
+            updateWork={this.updateWork}
+            updateEducation={this.updateEducation}
+          />
+        )}
+        <button onClick={this.toggleCompletion}>Submit</button>
       </div>
     );
   }

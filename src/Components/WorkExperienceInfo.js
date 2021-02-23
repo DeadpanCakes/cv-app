@@ -1,5 +1,5 @@
 const WorkExperienceInfo = (props) => {
-  const { key, companyName, position, timeWorked, desc } = props.workHistory;
+  const { key, companyName, position, timeWorked, desc } = props.job;
   return (
     <div>
       <li key={key}>

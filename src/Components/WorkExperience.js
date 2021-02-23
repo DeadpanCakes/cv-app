@@ -101,7 +101,7 @@ class WorkExperience extends Component {
         );
       }
       return (
-        <WorkExperienceInfo key={key} workHistory={job} edit={this.startEdit} remove={this.removeFromHistory}/>
+        <WorkExperienceInfo key={key} job={job} edit={this.startEdit} remove={this.removeFromHistory}/>
       );
     });
   }
