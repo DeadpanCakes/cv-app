@@ -10,11 +10,13 @@ class CVForm extends Component {
 }
 
   render() {
+    const { personalData, workData, educationData } = this.props.data
+    const { updatePersonal, updateWork, updateEducation } = this.props
     return (
       <div>
-        <Personal updatePersonal={this.props.updatePersonal} />
-        <WorkExperience updateWork={this.props.updateWork} />
-        <Education updateEducation={this.props.updateEducation} />
+        <Personal personalData={personalData} updatePersonal={updatePersonal} />
+        <WorkExperience workData={workData} updateWork={updateWork} />
+        <Education educationData={educationData} updateEducation={updateEducation} />
       </div>
     );
   }

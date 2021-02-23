@@ -6,12 +6,14 @@ class Personal extends Component {
   constructor(props) {
     super();
     this.state = {
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
-      email: '',
-      isDisplaying: "form",
+      firstName: props.personalData.firstName,
+      lastName: props.personalData.lastName,
+      phoneNumber: props.personalData.phoneNumber,
+      email: props.personalData.email,
     };
+    props.personalData.firstName !== ""
+      ? (this.state.isDisplaying = "info")
+      : (this.state.isDisplaying = "form");
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.delegateDisplay = this.delegateDisplay.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

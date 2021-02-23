@@ -85,11 +85,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" onClick={() => console.log(this.state)}>
         {this.state.isCompleted ? (
           this.formatCv()
         ) : (
           <CVForm
+            data={this.state}
             updatePersonal={this.updatePersonal}
             updateWork={this.updateWork}
             updateEducation={this.updateEducation}

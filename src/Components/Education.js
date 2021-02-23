@@ -6,7 +6,7 @@ class Education extends Component {
   constructor(props) {
     super();
     this.state = {
-      educationHistory: [],
+      educationHistory: props.educationData,
       newFormShowing: false,
     };
     this.addTerm = this.addTerm.bind(this);

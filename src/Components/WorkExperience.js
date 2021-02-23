@@ -6,7 +6,7 @@ class WorkExperience extends Component {
   constructor(props) {
     super();
     this.state = {
-      workHistory: [],
+      workHistory: props.workData,
       newFormShowing: false,
     };
     this.displayHistory = this.displayHistory.bind(this);
