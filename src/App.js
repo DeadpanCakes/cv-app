@@ -25,19 +25,19 @@ class App extends Component {
           position: "Chef",
           timeWorked: "Too Long",
           desc: "Cooked Stuff",
-        }
+        },
       ],
       educationData: [
         {
           key: 0,
           institution: "Place",
-          duration: "Time"
+          duration: "Time",
         },
         {
           key: 1,
           institution: "School",
-          duration: "Some Time"
-        }
+          duration: "Some Time",
+        },
       ],
       isCompleted: false,
     };
@@ -77,34 +77,40 @@ class App extends Component {
     const { workData, educationData } = this.state;
     return (
       <main>
-        <h1>
-          {firstName} {lastName}
-        </h1>
-        <h3>{phoneNumber}</h3>
-        <h3>{email}</h3>
-        <h1>Work Experience</h1>
-        <ul>
-          {workData.map((job) => {
-            return (
-              <li key={job.key}>
-                <h3>{job.companyName}</h3>
-                <p>{job.position}</p>
-                <p>{job.timeWorked}</p>
-              </li>
-            );
-          })}
-        </ul>
-        <h1>Education History</h1>
-        <ul>
-          {educationData.map((term) => {
-            return (
-              <li key={term.key}>
-                <h3>{term.institution}</h3>
-                <p>{term.duration}</p>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="personalInfo">
+          <h1 className="sectionHeader">
+            {firstName} {lastName}
+          </h1>
+          <h3>{phoneNumber}</h3>
+          <h3>{email}</h3>
+        </div>
+        <div className="workExperience">
+          <h1 className="sectionHeader">Work Experience</h1>
+          <ul>
+            {workData.map((job) => {
+              return (
+                <li className='prevJob' key={job.key}>
+                  <h3>{job.companyName}</h3>
+                  <p>{job.position}</p>
+                  <p>{job.timeWorked}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="educationHistory">
+          <h1 className="sectionHeader">Education History</h1>
+          <ul>
+            {educationData.map((term) => {
+              return (
+                <li className='educationTerm' key={term.key}>
+                  <h3>{term.institution}</h3>
+                  <p>{term.duration}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </main>
     );
   }
