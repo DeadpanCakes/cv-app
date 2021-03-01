@@ -97,6 +97,7 @@ const App = () => {
                   <div className="infoContainer">
                     <p>{job.position}</p>
                     <p>{job.duration}</p>
+                    <p>{job.desc}</p>
                   </div>
                 </li>
               );
@@ -125,7 +126,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App" onClick={() => console.log(work)}>
       {completion ? (
         formatCv()
       ) : (

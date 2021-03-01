@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import JobFactory from "../JobFactory";
 
 const WorkExperienceForm = (props) => {
   const [job, setJob] = useState({ ...props.data });
@@ -7,11 +8,11 @@ const WorkExperienceForm = (props) => {
   const initJob = () => {
     setJob({
       key: key + 1,
-      companyName: '',
-      position: '',
-      startDate: '',
-      endDate: '',
-      desc: '',
+      companyName: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      desc: "",
       isBeingEdited: false,
     });
   };
@@ -26,7 +27,9 @@ const WorkExperienceForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleSubmit(job);
+    props.handleSubmit(
+      JobFactory(key, companyName, position, startDate, endDate, desc)
+    );
     initJob();
   };
 
@@ -44,18 +47,19 @@ const WorkExperienceForm = (props) => {
         onChange={handleInput}
         placeholder="Position"
       ></input>
-      <label>Time Worked
-      <input
-        name='startDate'
-        type='date'
-        value={startDate}
-        onChange={handleInput}
-      ></input>
-      <input
-        name='endDate'
-        type='date'
-        value={endDate}
-        onChange={handleInput}
+      <label>
+        Time Worked
+        <input
+          name="startDate"
+          type="date"
+          value={startDate}
+          onChange={handleInput}
+        ></input>
+        <input
+          name="endDate"
+          type="date"
+          value={endDate}
+          onChange={handleInput}
         ></input>
       </label>
       <textarea
