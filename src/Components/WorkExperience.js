@@ -1,57 +1,16 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import WorkExperienceForm from "./WorkExperienceForm";
 import WorkExperienceInfo from "./WorkExperienceInfo";
 
-class WorkExperience extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      workHistory: props.workData,
-      newFormShowing: false,
-    };
-    this.displayHistory = this.displayHistory.bind(this);
-    this.removeFromHistory = this.removeFromHistory.bind(this);
-    this.editJob = this.editJob.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.startEdit = this.startEdit.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleForm = this.toggleForm.bind(this);
-  }
+const WorkExperience = (props) => {
+  const { work, updateWork } = props;
+  const [newFormShowing, setNewFormShowing] = useState(false);
 
-  async removeFromHistory(key) {
-    //Making a new arr by filtering out designated anonymous object, effectively deleting it from the array
-    const updatedHistory = this.state.workHistory.filter(
-      (obj) => !(obj.key === key)
-    );
-    await this.setState({
-      workHistory: updatedHistory,
-    });
-    this.props.updateWork(this.state.workHistory);
-  }
-
-  editJob(jobInfo) {
-    //Finds corresponding job and updates information
-    const newState = this.state.workHistory.map((job) => {
-      if (job.key === jobInfo.key) {
-        return {
-          key: jobInfo.key,
-          companyName: jobInfo.companyName,
-          position: jobInfo.position,
-          timeWorked: jobInfo.timeWorked,
-          desc: jobInfo.desc,
-          isBeingEdited: false,
-        };
-      }
-      return job;
-    });
-    return newState;
-  }
-
-  startEdit(key) {
+  const toggleEdit = (targetKey) => {
     //Sets designated job in workhistory to have isBeingEdited=true, signaling that a form should be displayed instead
-    const editTarget = this.state.workHistory.find((job) => job.key === key);
-    const updatedHistory = this.state.workHistory.map((job) => {
-      if (job.key === key) {
+    const editTarget = work.find((job) => job.key === targetKey);
+    const updatedHistory = work.map((job) => {
+      if (job.key === targetKey) {
         return {
           ...editTarget,
           isBeingEdited: true,
@@ -59,77 +18,67 @@ class WorkExperience extends Component {
       }
       return job;
     });
-    this.setState({ workHistory: updatedHistory });
-  }
+    updateWork(updatedHistory);
+  };
 
-  async handleEdit(newJob) {
-    const newHistory = this.editJob(newJob);
-    await this.setState({
-      workHistory: newHistory,
-    });
-    this.props.updateWork(this.state.workHistory);
-  }
+  const handleEdit = (targetKey, updatedJob) => {
+    console.log(updatedJob)
+    const updatedHistory = work.map((job) =>
+      job.key === targetKey ? updatedJob : job
+    );
+    updateWork(updatedHistory);
+  };
 
-  async handleSubmit(newJob) {
-    const updatedHistory = this.state.workHistory.concat(newJob);
-    await this.setState({ workHistory: updatedHistory });
-    this.props.updateWork(this.state.workHistory);
-  }
+  const addWork = (newJob) => {
+    const newHistory = props.work.concat(newJob);
+    props.updateWork(newHistory);
+  };
 
-  displayHistory(arr) {
+  const removeWork = (key) => {
+    props.updateWork(work.filter((job) => job.key !== key));
+  };
+
+  const displayHistory = (arr) => {
     return arr.map((job) => {
       const { key } = job;
-      if (job.isBeingEdited) {
-        return (
-          <WorkExperienceForm
-            key={key}
-            data={job}
-            handleSubmit={this.handleEdit}
-          />
-        );
-      }
-      return (
+      return job.isBeingEdited ? (
+        <WorkExperienceForm
+          key={key}
+          data={job}
+          handleSubmit={(jobValue) => handleEdit(key, jobValue)}
+        />
+      ) : (
         <WorkExperienceInfo
           key={key}
           job={job}
-          edit={this.startEdit}
-          remove={this.removeFromHistory}
+          edit={toggleEdit}
+          remove={removeWork}
         />
       );
     });
-  }
+  };
 
-  toggleForm() {
-    this.state.newFormShowing
-      ? this.setState({ newFormShowing: false })
-      : this.setState({ newFormShowing: true });
-  }
+  const toggleForm = () => {
+    newFormShowing ? setNewFormShowing(false) : setNewFormShowing(true);
+  };
 
-  render() {
-    return (
-      <div className="workExperience">
-        <div className="sectionHeader">
-          <h2>Work Experience</h2>
-          <button className="addBtn" onClick={this.toggleForm}>
-            {this.state.newFormShowing ? "Hide Form" : "Add Section"}
-          </button>
-        </div>
-        <ul className="jobList">
-          {this.displayHistory(this.state.workHistory)}
-        </ul>
-        <WorkExperienceForm
-          nextKey={this.state.workHistory.length}
-          data={{}}
-          handleSubmit={this.handleSubmit}
-          style={
-            this.state.newFormShowing
-              ? { display: "flex" }
-              : { display: "none" }
-          }
-        />
+  return (
+    <div className="workExperience">
+      <div className="sectionHeader">
+        <h2>Work Experience</h2>
+        <button className="addBtn" onClick={toggleForm}>
+          {newFormShowing ? "Hide Form" : "Add Section"}
+        </button>
       </div>
-    );
-  }
-}
+      <ul className="jobList">{displayHistory(work)}</ul>
+      <WorkExperienceForm
+        nextKey={work.length}
+        data={{}}
+        handleSubmit={addWork}
+        style={newFormShowing ? { display: "flex" } : { display: "none" }}
+      />
+    </div>
+  );
+};
 
 export default WorkExperience;

@@ -1,57 +1,58 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PersonalForm from "./PersonalForm";
 import PersonalInfo from "./PersonalInfo";
 
-class Personal extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      firstName: props.personalData.firstName,
-      lastName: props.personalData.lastName,
-      phoneNumber: props.personalData.phoneNumber,
-      email: props.personalData.email,
-    };
-    props.personalData.firstName !== ""
-      ? (this.state.isDisplaying = "info")
-      : (this.state.isDisplaying = "form");
-    this.toggleDisplay = this.toggleDisplay.bind(this);
-    this.delegateDisplay = this.delegateDisplay.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const Personal = (props) => {
+  const [isDisplaying, setIsDisplaying] = useState("info");
+  const { firstName, lastName, phoneNumber, email, updatePersonal } = props;
 
-  toggleDisplay() {
-    this.state.isDisplaying === "form"
-      ? this.setState({ isDisplaying: "info" })
-      : this.setState({ isDisplaying: "form" });
-  }
+  useEffect(() => {
+    firstName !== "" ? setIsDisplaying("info") : setIsDisplaying("form");
+  }, []);
 
-  delegateDisplay() {
-    if (this.state.isDisplaying === "form") {
+  const toggleDisplay = () => {
+    console.log(isDisplaying)
+    isDisplaying === "form" ? setIsDisplaying("info") : setIsDisplaying("form");
+    console.log(isDisplaying)
+  };
+
+  const checkDisplay = () => console.log(isDisplaying)
+
+  const delegateDisplay = () => {
+    if (isDisplaying === "form") {
       return (
         <PersonalForm
-          info={this.state}
-          handleInput={this.handleInput}
-          handleSubmit={this.handleSubmit}
+          firstName={firstName}
+          lastName={lastName}
+          phoneNumber={phoneNumber}
+          email={email}
+          updatePersonal={updatePersonal}
+          handleSubmit={handleSubmit}
         />
       );
     }
-    return <PersonalInfo info={this.state} edit={this.toggleDisplay} />;
-  }
-
-  handleSubmit(updatedInfo) {
-    this.setState(updatedInfo);
-    this.props.updatePersonal(updatedInfo);
-    this.toggleDisplay();
-  }
-
-  render() {
     return (
-      <div className="personalInfo">
-        <h2>Personal Information</h2>
-        {this.delegateDisplay()}
-      </div>
+      <PersonalInfo
+        firstName={firstName}
+        lastName={lastName}
+        phoneNumber={phoneNumber}
+        email={email}
+        toggleDisplay={toggleDisplay}
+      />
     );
-  }
-}
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    toggleDisplay();
+  };
+
+  return (
+    <div className="personalInfo" onClick={() => console.log(firstName)}>
+      <h2 onClick={checkDisplay}>Personal Information</h2>
+      {delegateDisplay()}
+    </div>
+  );
+};
 
 export default Personal;

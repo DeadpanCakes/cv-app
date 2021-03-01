@@ -1,25 +1,36 @@
 import Education from "./Education";
 import Personal from "./Personal";
 import WorkExperience from "./WorkExperience";
-import React, { Component } from "react";
+import React from "react";
 
-class CVForm extends Component {
-  constructor(props) {
-    super();
-    this.state = {};
-}
-
-  render() {
-    const { personalData, workData, educationData } = this.props.data
-    const { updatePersonal, updateWork, updateEducation } = this.props
-    return (
-      <div className="formContainer">
-        <Personal personalData={personalData} updatePersonal={updatePersonal} />
-        <WorkExperience workData={workData} updateWork={updateWork} />
-        <Education educationData={educationData} updateEducation={updateEducation} />
-      </div>
-    );
-  }
-}
+const CVForm = (props) => {
+  const {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    work,
+    education,
+    updatePersonal,
+    updateWork,
+    updateEducation,
+  } = props;
+  return (
+    <div className="formContainer">
+      <Personal
+        firstName={firstName}
+        lastName={lastName}
+        phoneNumber={phoneNumber}
+        email={email}
+        updatePersonal={updatePersonal}
+      />
+      <WorkExperience work={work} updateWork={updateWork} />
+      <Education
+        education={education}
+        updateEducation={updateEducation}
+      />
+    </div>
+  );
+};
 
 export default CVForm;

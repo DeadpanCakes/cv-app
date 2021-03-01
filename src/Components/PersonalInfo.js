@@ -1,5 +1,5 @@
-const InfoPreview = (props) => {
-  const { firstName, lastName, phoneNumber, email } = props.info;
+const PersonalInfo = (props) => {
+  const { firstName, lastName, phoneNumber, email, toggleDisplay } = props;
   return (
     <div>
       <h1>
@@ -9,9 +9,9 @@ const InfoPreview = (props) => {
         <h3>{phoneNumber}</h3>
         <h3>{email}</h3>
       </div>
-      <button onClick={props.edit}>Edit</button>
+      <button onClick={toggleDisplay}>Edit</button>
     </div>
   );
 };
 
-export default InfoPreview;
+export default PersonalInfo;

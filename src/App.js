@@ -1,80 +1,79 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import CVForm from "./Components/CVForm";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      personalData: {
-        firstName: "Anthony",
-        lastName: "Mendoza",
-        phoneNumber: "+1 (234) 567-8910",
-        email: "abc123@gmail.com",
-      },
-      workData: [
-        {
-          key: 0,
-          companyName: "Office",
-          position: "Job Doer",
-          timeWorked: "Too Long",
-          desc: "Did Stuff",
-        },
-        {
-          key: 1,
-          companyName: "Restaurant",
-          position: "Chef",
-          timeWorked: "Too Long",
-          desc: "Cooked Stuff",
-        },
-      ],
-      educationData: [
-        {
-          key: 0,
-          institution: "Place",
-          duration: "Time",
-        },
-        {
-          key: 1,
-          institution: "School",
-          duration: "Some Time",
-        },
-      ],
-      isCompleted: false,
-    };
-    this.toggleCompletion = this.toggleCompletion.bind(this);
-    this.updatePersonal = this.updatePersonal.bind(this);
-    this.updateWork = this.updateWork.bind(this);
-    this.updateEducation = this.updateEducation.bind(this);
-    this.formatCv = this.formatCv.bind(this);
+const App = () => {
+  // const [personal, setPersonal] = useState({
+  //   firstName: "Anthony",
+  //   lastName: "Mendoza",
+  //   phoneNumber: "+1 (234) 567-8910",
+  //   email: "abc123@gmail.com",
+  // });
+
+  const [firstName, setFirstName] = useState("Anthony");
+  const [lastName, setLastName] = useState("Mendoza");
+  const [phoneNumber, setPhoneNumber] = useState("+1 (234) 567-8910");
+  const [email, setEmail] = useState("abc123@gmail.com");
+
+  const [work, setWork] = useState([
+    {
+      key: 0,
+      companyName: "Office",
+      position: "Job Doer",
+      timeWorked: "Too Long",
+      desc: "Did Stuff",
+    },
+    {
+      key: 1,
+      companyName: "Restaurant",
+      position: "Chef",
+      timeWorked: "Too Long",
+      desc: "Cooked Stuff",
+    },
+  ]);
+
+  const [education, setEducation] = useState([
+    {
+      key: 0,
+      institution: "Place",
+      duration: "Time",
+    },
+    {
+      key: 1,
+      institution: "School",
+      duration: "Some Time",
+    },
+  ]);
+
+  const [completion, setCompletion] = useState(false);
+
+  const toggleCompletion = () => {
+    completion ? setCompletion(false) : setCompletion(true);
+  };
+
+  const updatePersonal = (e) => {
+    switch (e.target.name) {
+      case "firstName":
+        setFirstName(e.target.value);
+        break;
+      case "lastName":
+        setLastName(e.target.value);
+        break;
+      case "phoneNumber":
+        setPhoneNumber(e.target.value);
+        break;
+      case "email":
+        setEmail(e.target.value);
+        break;
+      default:
+        console.log("something went wrong");
+    }
+  };
+
+  const updateWork = (updatedWork) => {
+    setWork(updatedWork);
   }
 
-  toggleCompletion() {
-    this.setState((prevState) => ({
-      isCompleted: !prevState.isCompleted,
-    }));
-  }
-
-  updatePersonal(newData) {
-    this.setState({
-      personalData: newData,
-    });
-  }
-
-  updateWork(newData) {
-    this.setState({
-      workData: newData,
-    });
-  }
-
-  updateEducation(newData) {
-    this.setState({
-      educationData: newData,
-    });
-  }
-
-  formatCv() {
-    const { firstName, lastName, phoneNumber, email } = this.state.personalData;
-    const { workData, educationData } = this.state;
+  const formatCv = () => {
     return (
       <main>
         <div className="personalInfo">
@@ -89,7 +88,7 @@ class App extends Component {
         <div className="workExperience">
           <h2 className="sectionHeader">Work Experience</h2>
           <ul>
-            {workData.map((job) => {
+            {work.map((job) => {
               return (
                 <li className="prevJob" key={job.key}>
                   <h3>{job.companyName}</h3>
@@ -105,7 +104,7 @@ class App extends Component {
         <div className="educationHistory">
           <h2 className="sectionHeader">Education History</h2>
           <ul>
-            {educationData.map((term) => {
+            {education.map((term) => {
               return (
                 <li className="educationTerm" key={term.key}>
                   <h3>{term.institution}</h3>
@@ -119,25 +118,27 @@ class App extends Component {
         </div>
       </main>
     );
-  }
+  };
 
-  render() {
-    return (
-      <div className="App" onClick={() => console.log(this.state)}>
-        {this.state.isCompleted ? (
-          this.formatCv()
-        ) : (
-          <CVForm
-            data={this.state}
-            updatePersonal={this.updatePersonal}
-            updateWork={this.updateWork}
-            updateEducation={this.updateEducation}
-          />
-        )}
-        <button onClick={this.toggleCompletion}>Submit</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="App">
+      {completion ? (
+        formatCv()
+      ) : (
+        <CVForm
+          firstName={firstName}
+          lastName={lastName}
+          phoneNumber={phoneNumber}
+          email={email}
+          work={work}
+          education={education}
+          updatePersonal={updatePersonal}
+          updateWork={updateWork}
+        />
+      )}
+      <button onClick={toggleCompletion}>Submit</button>
+    </div>
+  );
+};
 
 export default App;
