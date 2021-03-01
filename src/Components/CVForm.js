@@ -25,10 +25,7 @@ const CVForm = (props) => {
         updatePersonal={updatePersonal}
       />
       <WorkExperience work={work} updateWork={updateWork} />
-      <Education
-        education={education}
-        updateEducation={updateEducation}
-      />
+      <Education education={education} updateEducation={updateEducation} />
     </div>
   );
 };

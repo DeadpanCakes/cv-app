@@ -22,9 +22,9 @@ const WorkExperience = (props) => {
   };
 
   const handleEdit = (targetKey, updatedJob) => {
-    console.log(updatedJob)
+    console.log(updatedJob);
     const updatedHistory = work.map((job) =>
-      job.key === targetKey ? updatedJob : job
+      job.key === targetKey ? { ...updatedJob, isBeingEdited: false } : job
     );
     updateWork(updatedHistory);
   };
@@ -73,7 +73,13 @@ const WorkExperience = (props) => {
       <ul className="jobList">{displayHistory(work)}</ul>
       <WorkExperienceForm
         nextKey={work.length}
-        data={{}}
+        data={{
+          key: work.length,
+          companyName: "",
+          position: "",
+          timeWorked: "",
+          desc: "",
+        }}
         handleSubmit={addWork}
         style={newFormShowing ? { display: "flex" } : { display: "none" }}
       />

@@ -2,13 +2,6 @@ import React, { useState } from "react";
 import CVForm from "./Components/CVForm";
 
 const App = () => {
-  // const [personal, setPersonal] = useState({
-  //   firstName: "Anthony",
-  //   lastName: "Mendoza",
-  //   phoneNumber: "+1 (234) 567-8910",
-  //   email: "abc123@gmail.com",
-  // });
-
   const [firstName, setFirstName] = useState("Anthony");
   const [lastName, setLastName] = useState("Mendoza");
   const [phoneNumber, setPhoneNumber] = useState("+1 (234) 567-8910");
@@ -35,12 +28,14 @@ const App = () => {
     {
       key: 0,
       institution: "Place",
-      duration: "Time",
+      startDate: "2021-03-02",
+      endDate: "2021-03-23",
     },
     {
       key: 1,
       institution: "School",
-      duration: "Some Time",
+      startDate: "2017-03-09",
+      endDate: "2019-03-09"
     },
   ]);
 
@@ -71,6 +66,10 @@ const App = () => {
 
   const updateWork = (updatedWork) => {
     setWork(updatedWork);
+  }
+
+  const updateEducation = (updateEducation) => {
+    setEducation(updateEducation)
   }
 
   const formatCv = () => {
@@ -134,6 +133,7 @@ const App = () => {
           education={education}
           updatePersonal={updatePersonal}
           updateWork={updateWork}
+          updateEducation={updateEducation}
         />
       )}
       <button onClick={toggleCompletion}>Submit</button>
