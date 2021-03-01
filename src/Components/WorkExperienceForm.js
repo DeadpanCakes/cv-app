@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 
 const WorkExperienceForm = (props) => {
   const [job, setJob] = useState({ ...props.data });
-  const { key, companyName, position, timeWorked, desc } = job;
+  const { key, companyName, position, startDate, endDate, desc } = job;
 
   const initJob = () => {
     setJob({
       key: key + 1,
-      companyName: "",
-      position: "",
-      timeWorked: "",
-      desc: "",
+      companyName: '',
+      position: '',
+      startDate: '',
+      endDate: '',
+      desc: '',
       isBeingEdited: false,
     });
   };
@@ -43,12 +44,20 @@ const WorkExperienceForm = (props) => {
         onChange={handleInput}
         placeholder="Position"
       ></input>
+      <label>Time Worked
       <input
-        name="timeWorked"
-        value={timeWorked}
+        name='startDate'
+        type='date'
+        value={startDate}
         onChange={handleInput}
-        placeholder="Time Worked"
       ></input>
+      <input
+        name='endDate'
+        type='date'
+        value={endDate}
+        onChange={handleInput}
+        ></input>
+      </label>
       <textarea
         className="jobDesc"
         name="desc"

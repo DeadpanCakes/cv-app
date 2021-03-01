@@ -75,10 +75,11 @@ const WorkExperience = (props) => {
         nextKey={work.length}
         data={{
           key: work.length,
-          companyName: "",
-          position: "",
-          timeWorked: "",
-          desc: "",
+          companyName: '',
+          position: '',
+          startDate: '',
+          endDate: '',
+          desc: '',
         }}
         handleSubmit={addWork}
         style={newFormShowing ? { display: "flex" } : { display: "none" }}

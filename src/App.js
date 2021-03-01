@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CVForm from "./Components/CVForm";
+import JobFactory from "./JobFactory";
 
 const App = () => {
   const [firstName, setFirstName] = useState("Anthony");
@@ -8,20 +9,22 @@ const App = () => {
   const [email, setEmail] = useState("abc123@gmail.com");
 
   const [work, setWork] = useState([
-    {
-      key: 0,
-      companyName: "Office",
-      position: "Job Doer",
-      timeWorked: "Too Long",
-      desc: "Did Stuff",
-    },
-    {
-      key: 1,
-      companyName: "Restaurant",
-      position: "Chef",
-      timeWorked: "Too Long",
-      desc: "Cooked Stuff",
-    },
+    JobFactory(
+      0,
+      "Office",
+      "Job Doer",
+      "2015-03-03",
+      "2016-01-01",
+      "Did Stuff"
+    ),
+    JobFactory(
+      1,
+      "Restaurant",
+      "Chef",
+      "2017-05-01",
+      "2019-03-03",
+      "Cooked Stuff"
+    ),
   ]);
 
   const [education, setEducation] = useState([
@@ -35,7 +38,7 @@ const App = () => {
       key: 1,
       institution: "School",
       startDate: "2017-03-09",
-      endDate: "2019-03-09"
+      endDate: "2019-03-09",
     },
   ]);
 
@@ -66,11 +69,11 @@ const App = () => {
 
   const updateWork = (updatedWork) => {
     setWork(updatedWork);
-  }
+  };
 
   const updateEducation = (updateEducation) => {
-    setEducation(updateEducation)
-  }
+    setEducation(updateEducation);
+  };
 
   const formatCv = () => {
     return (
@@ -93,7 +96,7 @@ const App = () => {
                   <h3>{job.companyName}</h3>
                   <div className="infoContainer">
                     <p>{job.position}</p>
-                    <p>{job.timeWorked}</p>
+                    <p>{job.duration}</p>
                   </div>
                 </li>
               );
@@ -108,7 +111,9 @@ const App = () => {
                 <li className="educationTerm" key={term.key}>
                   <h3>{term.institution}</h3>
                   <div className="infoContainer">
-                    <p>{term.duration}</p>
+                    <p>
+                      {term.startDate} To {term.endDate}
+                    </p>
                   </div>
                 </li>
               );
