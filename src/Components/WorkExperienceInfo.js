@@ -1,6 +1,5 @@
 const WorkExperienceInfo = (props) => {
   const { key, companyName, position, duration, desc } = props.job;
-  console.log(desc)
   return (
     <div>
       <li key={key} className="prevJob">

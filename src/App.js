@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CVForm from "./Components/CVForm";
 import JobFactory from "./JobFactory";
+import TermFactory from "./TermFactory";
 
 const App = () => {
   const [firstName, setFirstName] = useState("Anthony");
@@ -28,18 +29,8 @@ const App = () => {
   ]);
 
   const [education, setEducation] = useState([
-    {
-      key: 0,
-      institution: "Place",
-      startDate: "2021-03-02",
-      endDate: "2021-03-23",
-    },
-    {
-      key: 1,
-      institution: "School",
-      startDate: "2017-03-09",
-      endDate: "2019-03-09",
-    },
+    TermFactory(0, "Place", "2021-03-02", "2021-03-23"),
+    TermFactory(1, "School", "2017-03-09", "2019-03-09"),
   ]);
 
   const [completion, setCompletion] = useState(false);

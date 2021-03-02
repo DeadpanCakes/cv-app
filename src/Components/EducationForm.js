@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import TermFactory from '../TermFactory';
 
 const EducationForm = (props) => {
   const [term, setTerm] = useState(props.data)
@@ -23,7 +24,7 @@ const EducationForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleSubmit(term)
+    props.handleSubmit(TermFactory(key, institution, startDate, endDate))
     initTerm();
   }
     return (
