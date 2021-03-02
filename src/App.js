@@ -104,7 +104,7 @@ const App = () => {
                   <h3>{term.institution}</h3>
                   <div className="infoContainer">
                     <p>
-                      {term.startDate} To {term.endDate}
+                      {term.duration}
                     </p>
                   </div>
                 </li>

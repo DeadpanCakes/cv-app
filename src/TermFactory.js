@@ -3,7 +3,7 @@ const TermFactory = (key, institution, startDate, endDate) => ({
   institution,
   startDate,
   endDate,
-  get Duration() {
+  get duration() {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return `${new Date(this.startDate).toLocaleString(
       "en-US",
